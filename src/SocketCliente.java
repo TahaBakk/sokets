@@ -13,17 +13,16 @@ public class SocketCliente {
     public static void main(String[] args) {
 
 
-        for (int i = 0; i < 64512; i++) {
+        for (int i = 5550; i < 64512; i++) {
 
             try {
                 Socket cliente = new Socket();
-                InetSocketAddress addres = new InetSocketAddress("192.168.1.142", i);
-                cliente.connect(addres);
+                InetSocketAddress addr = new InetSocketAddress("localhost", 5550);
+                cliente.connect(addr);
                 InputStream is = cliente.getInputStream();
                 OutputStream os = cliente.getOutputStream();
-                String mensaje = "Mi primer mensaje que navega";
+                String mensaje = "hehe me salio xDD";
                 os.write(mensaje.getBytes());
-                System.out.println("El puerto " + i + " esta abierto");
                 cliente.close();
 
 
