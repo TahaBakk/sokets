@@ -9,31 +9,28 @@ import java.net.Socket;
  * Created by 53638138e on 01/02/17.
  */
 public class SocketCliente {
-    public static void main(String[] args) {
-        try {
-            System.out.println("Creando un cliente");
-            Socket cliente = new Socket();
-            DatagramSocket udp = new DatagramSocket();
 
-            for(int i = 1000 ; i > 5555; i++) {
-                System.out.println("Creando una conecxion");
-                InetSocketAddress addr = new InetSocketAddress("172.31.73.45", i);
-                cliente.connect(addr);
+    public static void main(String[] args) {
+
+
+        for (int i = 0; i < 64512; i++) {
+
+            try {
+                Socket cliente = new Socket();
+                InetSocketAddress addres = new InetSocketAddress("192.168.1.142", i);
+                cliente.connect(addres);
                 InputStream is = cliente.getInputStream();
                 OutputStream os = cliente.getOutputStream();
-
-                String mensaje = "Holaaaaa";
-                System.out.println("Enviando mensaje");
+                String mensaje = "Mi primer mensaje que navega";
                 os.write(mensaje.getBytes());
-                System.out.println("Mensaje enviado");
-
-                System.out.println("Creando socket del cliente");
+                System.out.println("El puerto " + i + " esta abierto");
                 cliente.close();
 
-                System.out.println("Terminado");
+
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        }catch (IOException e){
-          //  e.printStackTrace();
+
         }
     }
 }
